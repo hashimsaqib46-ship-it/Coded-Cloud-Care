@@ -117,26 +117,7 @@ app.use('/api/auth/register', authLimiter);
 app.use(compression());
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        'https://dashboard-site-qbgb.onrender.com',
-        'http://localhost:3000',
-        'http://127.0.0.1:3000',
-        'http://localhost:5000',
-        'http://127.0.0.1:5000',
-        'http://localhost:5500',
-        'http://127.0.0.1:5500',
-        'http://localhost:5173',
-        'http://127.0.0.1:5173'
-      ];
-      // Allow requests with no origin (like mobile apps or curl) or if in allowed list
-      if (!origin || allowedOrigins.includes(origin) || (process.env.NODE_ENV !== 'production' && origin === 'null')) {
-        callback(null, true);
-      } else {
-        console.warn(`[CORS] Rejected request from origin: ${origin}`);
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: true, // Allow all origins to prevent CORS issues on different domains (e.g., Render subdomains)
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
