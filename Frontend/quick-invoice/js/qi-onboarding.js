@@ -124,6 +124,10 @@
                 <input name="clinicEmail" type="email" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" value="${escapeHtml(initialSettings?.clinicEmail || user?.email || '')}" />
               </label>
               <label class="block">
+                <span class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Company Logo</span>
+                <input name="clinicLogo" type="file" accept="image/*" class="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-sm bg-white cursor-pointer" />
+              </label>
+              <label class="block md:col-span-2">
                 <span class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Tagline</span>
                 <input name="clinicTagline" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm" value="${escapeHtml(initialSettings?.clinicTagline || '')}" placeholder="Smart billing and collections" />
               </label>
@@ -157,12 +161,28 @@
           return;
         }
 
+        let clinicLogoBase64 = initialSettings?.clinicLogo || '';
+        const logoInput = form.elements.namedItem('clinicLogo');
+        if (logoInput && logoInput.files && logoInput.files[0]) {
+          try {
+            clinicLogoBase64 = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(logoInput.files[0]);
+            });
+          } catch (err) {
+            console.error('Failed to read logo image', err);
+          }
+        }
+
         const payload = {
           clinicName,
           clinicPhone: String(form.elements.namedItem('clinicPhone').value || '').trim(),
           clinicEmail: String(form.elements.namedItem('clinicEmail').value || '').trim(),
           clinicTagline: String(form.elements.namedItem('clinicTagline').value || '').trim(),
           clinicAddress: String(form.elements.namedItem('clinicAddress').value || '').trim(),
+          clinicLogo: clinicLogoBase64,
           isOnboardingComplete: true,
         };
 
@@ -176,6 +196,10 @@
           });
 
           wrapper.remove();
+          
+          // Force UI to show updated info correctly and instantly
+          window.location.reload();
+          
           resolve(result.data || payload);
         } catch (error) {
           errorEl.textContent = error.message || 'Failed to save setup.';

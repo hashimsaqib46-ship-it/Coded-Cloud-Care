@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
  * @returns {string} - JWT token
  */
 const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, {
+  const secret = process.env.JWT_SECRET || process.env.SESSION_SECRET;
+  if (!secret) throw new Error('JWT_SECRET or SESSION_SECRET must be defined');
+  return jwt.sign({ userId }, secret, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   });
 };
@@ -18,7 +20,9 @@ const generateToken = (userId) => {
  */
 const verifyToken = (token) => {
   try {
-    return jwt.verify(token, process.env.JWT_SECRET);
+    const secret = process.env.JWT_SECRET || process.env.SESSION_SECRET;
+    if (!secret) throw new Error('JWT_SECRET or SESSION_SECRET must be defined');
+    return jwt.verify(token, secret);
   } catch (error) {
     throw new Error('Invalid or expired token');
   }
