@@ -1,78 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Cloud Care Systems</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #4338ca;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-            color: #111827;
-            line-height: 1.6;
-            padding: 40px;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            padding: 60px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
         }
 
         h1 {
-            color: #4f46e5;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .last-updated {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            display: block;
         }
 
         h2 {
-            margin-top: 30px;
-            color: #374151;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
         }
 
         p {
-            margin-bottom: 15px;
-            color: #4b5563;
+            margin-bottom: 20px;
+            color: var(--text-gray);
         }
 
-        a {
-            color: #4f46e5;
-            text-decoration: none;
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
         }
 
-        a:hover {
-            text-decoration: underline;
+        li {
+            margin-bottom: 10px;
+            color: var(--text-gray);
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
-
 <body>
     <div class="container">
-        <a href="/">&larr; Back to Home</a>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
         <h1>Privacy Policy</h1>
-        <p>Last Updated: October 2026</p>
+        <span class="last-updated">Last Updated: March 2026</span>
 
-        <h2>1. Information we collect</h2>
-        <p>We collect your name, email, and phone number when you register for an account. We also store the data you
-            input into the Service (e.g., patient records, inventory) solely for the purpose of providing the Service.
-        </p>
+        <section>
+            <h2>1. Introduction</h2>
+            <p>At Cloud Care Systems, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your institutional and personal information when you use our services.</p>
+        </section>
 
-        <h2>2. How we use your information</h2>
-        <p>We use your information strictly to operate the platform, process billing, and verify your identity. We do
-            not sell your personal data or your patients' data to third parties.</p>
+        <section>
+            <h2>2. Information We Collect</h2>
+            <p>We collect several types of information:</p>
+            <ul>
+                <li><strong>Account Information:</strong> Name, professional email, phone number, and institution details.</li>
+                <li><strong>Operational Data:</strong> Patient records, laboratory results, pharmacy inventory (all handled with high security).</li>
+                <li><strong>Payment Data:</strong> Handled by secure third-party processors. We do not store full credit card numbers on our servers.</li>
+                <li><strong>Usage Data:</strong> Technical logs, browser type, and interactions with our platform to improve service quality.</li>
+            </ul>
+        </section>
 
-        <h2>3. Security</h2>
-        <p>Your data is encrypted in transit using SSL/TLS. We utilize secure MongoDB Atlas clusters to ensure data
-            segregation and protection.</p>
+        <section>
+            <h2>3. How We Use Information</h2>
+            <p>Your data is used specifically for:</p>
+            <ul>
+                <li>Providing healthcare management functionalities.</li>
+                <li>Ensuring secure access and tenant isolation.</li>
+                <li>Processing transactions and billing.</li>
+                <li>Technical support and system improvements.</li>
+            </ul>
+        </section>
 
-        <h2>4. Cookies</h2>
-        <p>We use session cookies to maintain your login state. These are required for the application to function.</p>
+        <section>
+            <h2>4. Data Protection & Security</h2>
+            <p>We implement industry-standard security measures:</p>
+            <ul>
+                <li><span class="highlight">Encryption:</span> Data is encrypted "at rest" and "in transit" using SSL/TLS protocols.</li>
+                <li><span class="highlight">Tenant Isolation:</span> Each institution’s data is cryptographically separated.</li>
+                <li><span class="highlight">Access Control:</span> Granular permission levels for your staff (Doctors, Admin, Lab Techs).</li>
+            </ul>
+        </section>
 
-        <h2>5. Contact</h2>
-        <p>If you have any questions, contact us at privacy@coded.care.</p>
+        <section>
+            <h2>5. Third-Party Sharing</h2>
+            <p>We <strong>do not sell</strong> your data. We only share information with partners essential for service delivery (e.g., PayFast for billing, cloud hosting providers) under strict confidentiality agreements.</p>
+        </section>
+
+        <section>
+            <h2>6. Your Rights</h2>
+            <p>You have the right to access, export, or request deletion of your institutional data at any time, subject to local legal requirements for medical record retention.</p>
+        </section>
+
+        <section>
+            <p style="margin-top: 40px; font-size: 0.9rem;">Privacy concerns? Contact us at <a href="mailto:privacy@codedclouds.org" style="color: var(--primary-color);">privacy@codedclouds.org</a></p>
+        </section>
     </div>
 </body>
-
 </html>
